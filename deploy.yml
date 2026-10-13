@@ -1,0 +1,13 @@
+- name: Fetch files with Ansible
+  hosts: localhost
+  connection: local
+  vars:
+    repo_url: "https://github.com/PavithraChukka-30/dev-files.git"
+    dest_dir: "{{ lookup('env', 'WORKSPACE') }}/files"
+  tasks:
+    - name: Clone or update the repo into the files folder
+      ansible.builtin.git:
+        repo: "{{ repo_url }}"
+        dest: "{{ dest_dir }}"
+        version: main
+        force: true
